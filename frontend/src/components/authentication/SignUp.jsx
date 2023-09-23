@@ -17,7 +17,6 @@ const SignUp = () => {
   const [pic, setPic] = useState();
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
-  const postDetails = (pics) => {};
   const handleSubmit = () => {};
   return (
     <VStack spacing={"7px"} color={"black"}>
@@ -67,16 +66,6 @@ const SignUp = () => {
             </Button>
           </InputRightElement>
         </InputGroup>
-      </FormControl>
-
-      <FormControl id="fir" isRequired>
-        <FormLabel>Upload Your picture</FormLabel>
-        <Input
-          type="file"
-          placeholder="Upload your image"
-          accept="image/*"
-          onChange={(e) => postDetails(e.target.files[0])}
-        />
       </FormControl>
 
       <Button onClick={handleSubmit}>Submit</Button>

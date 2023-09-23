@@ -1,6 +1,12 @@
+require("dotenv").config({ path: "../.env" }); //specified the path
 const express = require("express");
 const app = express();
+const { connectDB } = require("../db");
 const chats = require("./chats");
+const userRoutes = require("./routes/userRoutes");
+
+app.use("/api/user", userRouter);
+
 app.get("/", (req, res) => {
   res.send("this is home");
 });
@@ -15,6 +21,13 @@ app.get("/chats/:id", (req, res) => {
   res.send(chat);
 });
 
-app.listen(5000, () => {
-  console.log("Server Started on port 5000");
-});
+connectDB()
+  .then((res) => {
+    console.log(res);
+    app.listen(process.env.PORT || 5000, () => {
+      console.log("Server started");
+    });
+  })
+  .catch((e) => {
+    console.log("Error occured", e);
+  });
